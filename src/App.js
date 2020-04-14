@@ -8,11 +8,22 @@ import NewAppointment from "./components/NewAppointment"; //importamos NewAppoin
 //Creamos la clase que extiende de component
 class App extends Component {
   //Creamos el state vacío por ahora
-  state = {};
+  state = {
+    appointments:[] //declaramos array de appointments vacío
+  };
 
-    //función que toma datos y lo pasamos así al componente de nueva cita
-    createNewAppointment = info => {
-      console.log(info); //muestro lo que le llega por las props
+    //función que toma data y lo pasamos así al componente de nueva cita
+    createNewAppointment = data => {
+      /** 1. hacemos spread para hacer copia el estate actual de appointments
+       *  2. agregamos lo que haya en data */
+      const appointments = [...this.state.appointments, data];
+      //agregar el nuevo state
+      this.setState({ 
+        //objeto del store y objeto que le llega
+        appointments
+        //al llamarse igual podemos dejar appointments a secas
+        //pero podría ser appointments:appointments
+      })
     }
 
   render() {
