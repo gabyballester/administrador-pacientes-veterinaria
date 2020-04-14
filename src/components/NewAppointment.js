@@ -2,7 +2,30 @@ import React, { Component } from "react"; //importamos react y component
 
 class NewAppointment extends Component {
   //creamos clase para nueva cita
-  state = {};
+
+  state = {
+    //creamos state
+    appointment: {
+      //creamos objeto cita y las propiedades vacías que vamos a usar
+      pet: "",
+      owner: "",
+      date: "",
+      time: "",
+      symptoms: "",
+    },
+  };
+
+  // Cuando el usuario escribe en los inputs
+  handleChange = (e) => {
+    this.setState({
+      appointment: {
+        // con el spread: creamos una copia del state y sólo afecta al campo en que escribo
+        ...this.state.appointment,
+        [e.target.name]: e.target.value,
+      },
+    });
+  };
+
   render() {
     return (
       <div className="card mt-5 py-5 pl-4 pr-4">
@@ -22,7 +45,9 @@ class NewAppointment extends Component {
                   type="text"
                   className="form-control"
                   placeholder="Nombre Mascota"
-                  name="pet"
+                  name="pet" //nombre de la propiedad
+                  onChange={this.handleChange} //evento que llama a función si detecta cambios
+                  value={this.state.appointment.pet} //value de campo pet
                 />
               </div>
             </div>
@@ -39,6 +64,8 @@ class NewAppointment extends Component {
                   className="form-control"
                   placeholder="Nombre Mascota"
                   name="owner"
+                  onChange={this.handleChange} //evento que llama a función si detecta cambios
+                  value={this.state.appointment.owner} //value de campo owner
                 />
               </div>
             </div>
@@ -50,14 +77,26 @@ class NewAppointment extends Component {
                 Fecha:
               </label>
               <div className="p-0 col-xs-3 mr-lg-4">
-                <input type="date" className="form-control" name="date" />
+                <input
+                  type="date"
+                  className="form-control"
+                  name="date"
+                  onChange={this.handleChange} //evento que llama a función si detecta cambios
+                  value={this.state.appointment.date} //value de campo date
+                />
               </div>
 
               <label className="col-sm-2 ml-sm-2 ml-md-4 ml-lg-5 col-form-label">
                 Hora:
               </label>
               <div className="p-0 col-xs-3">
-                <input type="time" className="form-control" name="time" />
+                <input
+                  type="time"
+                  className="form-control"
+                  name="time"
+                  onChange={this.handleChange} //evento que llama a función si detecta cambios
+                  value={this.state.appointment.time} //value de campo time
+                />
               </div>
             </div>
             {/* Fin fecha y hora cita */}
@@ -70,8 +109,10 @@ class NewAppointment extends Component {
               <div className="p-0 col-sm-12 col-md-7 col-lg-8">
                 <textarea
                   className="form-control"
-                  name="sintomas"
+                  name="symptoms"
                   placeholder="Descripción de síntomas"
+                  onChange={this.handleChange} //evento que llama a función si detecta cambios
+                  value={this.state.appointment.symptoms} //value de campo symptoms
                 />
               </div>
             </div>
