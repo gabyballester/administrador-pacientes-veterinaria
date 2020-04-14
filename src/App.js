@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import "./assets/css/bootstrap.min.css";
 
 //Importamos componentes
-import Header from "./components/Header";
+import Header from './components/Header';
 import NewAppointment from "./components/NewAppointment";
 import AppointmentsList from "./components/AppointmentsList";
 
@@ -14,6 +14,21 @@ class App extends Component {
   state = {
     appointments: [], //declaramos array de appointments vacío
   };
+
+    // Cuando la aplicación carga
+    componentDidMount() {
+      const appointmentsLS = localStorage.getItem('appointments');
+      if(appointmentsLS) { //si hay citas, las guarda
+        this.setState({
+          appointments : JSON.parse(appointmentsLS)
+        })
+      }
+    }
+
+  // cuando eliminamos o agregamos una nueva cita
+  componentDidUpdate() {
+    localStorage.setItem('appointments', JSON.stringify(this.state.appointments));
+  }
 
   //función que toma data y lo pasamos así al componente de nueva cita
   createNewAppointment = (data) => {
@@ -30,7 +45,7 @@ class App extends Component {
   };
 
   // elimina las citas del state
-  deleteAppontment = id => {
+  deleteAppointment = id => {
     // tomar una copia del state.appointments
     const currentAppointments = [...this.state.appointments];
     // utilizar filter para sacar el elemento @id del arreglo
@@ -61,7 +76,7 @@ class App extends Component {
             <AppointmentsList
               // Pasamos estados o funciones a componente hijo
               appointments={this.state.appointments}
-              deleteAppontment={this.deleteAppontment} />
+              deleteAppointment={this.deleteAppointment} />
           </div>
         </div>
       </div>

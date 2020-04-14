@@ -1,5 +1,5 @@
 import React, { Component } from "react"; //importamos react y component
-// import { uuid } from 'uuidv4'; //importo librería random id generator
+import PropTypes from 'prop-types'; //importamos
 const { uuid } = require('uuidv4');
 
 
@@ -180,6 +180,10 @@ class NewAppointment extends Component {
       </div>
     );
   }
+}
+
+NewAppointment.propTypes = {
+  createNewAppointment : PropTypes.func.isRequired
 }
 
 export default NewAppointment;
