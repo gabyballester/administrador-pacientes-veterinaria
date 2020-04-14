@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Header = () => (
+const Header = ({titulo}) => ( //agregamos el nombre del prop
 <header>
-    <h1 className="text-center"></h1>
+    {/* le paso prop titulo */}
+    <h1 className="text-center">{titulo}</h1>
 </header>
 ); 
 
-export default;
+export default Header;
