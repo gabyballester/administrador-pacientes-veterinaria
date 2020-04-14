@@ -8,11 +8,11 @@ const stateDefault = {
   //creamos state
   appointment: {
     //creamos objeto cita y las propiedades vacías que vamos a usar
-    pet: "",
-    owner: "",
-    date: "",
-    time: "",
-    symptoms: "",
+    pet: "asdf",
+    owner: "asdf",
+    date: "2020-10-10",
+    time: "10:10",
+    symptoms: "asdfasfd",
   },
   error: false //por defecto sin errores
 };
