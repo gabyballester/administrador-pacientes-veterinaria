@@ -13,6 +13,7 @@ class NewAppointment extends Component {
       time: "",
       symptoms: "",
     },
+    error: false //por defecto sin errores
   };
 
   // Cuando el usuario escribe en los inputs
@@ -26,6 +27,30 @@ class NewAppointment extends Component {
     });
   };
 
+  // cuando el usuario envia el formulario
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    // extraer los valores del state con descructuring y desde el state.appointment
+    const { pet, owner, date, time, symptoms } = this.state.appointment;
+
+    // validar que todos los campos esten llenos
+    if (pet === '' || owner === '' || date === '' || time === '' || symptoms === '') {
+      this.setState({
+        error: true //si hay error que lo guarde en store
+      });
+
+      // detener la ejecución si hay error
+      return;
+    };
+    
+    console.log('después del if');
+
+    // Agregar la cita al state de App
+
+  }
+
+
   render() {
     return (
       <div className="card mt-5 py-5 pl-4 pr-4">
@@ -34,7 +59,7 @@ class NewAppointment extends Component {
             Llena el formulario para crear una nueva cita
           </h2>
 
-          <form>
+          <form onSubmit={this.handleSubmit}>
             {/* Datos mascota */}
             <div className="form-group row mx-auto">
               <label className="col-sm-12 col-md-4 col-lg-3 ml-sm-2 ml-md-4 ml-lg-4 col-form-label">
@@ -53,7 +78,7 @@ class NewAppointment extends Component {
             </div>
             {/* Fin  Datos mascota  */}
 
-            {/* Datos mascota */}
+            {/* Datos dueño */}
             <div className="form-group row mx-auto">
               <label className="col-sm-12 col-md-4 col-lg-3 ml-sm-2 ml-md-4 ml-lg-4 col-form-label">
                 Nombre dueño
@@ -69,7 +94,7 @@ class NewAppointment extends Component {
                 />
               </div>
             </div>
-            {/* Fin datos mascota  */}
+            {/* Fin datos dueño  */}
 
             {/* Fecha y hora cita */}
             <div className="form-group row mx-auto">
