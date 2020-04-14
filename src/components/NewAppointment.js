@@ -61,12 +61,21 @@ class NewAppointment extends Component {
   }
 
   render() {
+
+    //extraemos valor del error del state
+    // lo extraemos haciendo destructuring de state
+     const { error } = this.state;
+
     return (
       <div className="card mt-5 py-5 pl-4 pr-4">
         <div className="card-12">
           <h2 className="card-title text-center mb-5 ml-4 mr-4">
-            Llena el formulario para crear una nueva cita
-          </h2>
+            Llena el formulario para crear una nueva cita</h2>
+          {/* Mostramos error con ternario */}
+          { error ?
+          <div className="alert alert-danger mt-2 mb-5 text-center">
+            Todos los campos son obligatorios
+            </div>  : null}
 
           <form onSubmit={this.handleSubmit}>
             {/* Datos mascota */}
