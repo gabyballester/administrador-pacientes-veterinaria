@@ -1,4 +1,6 @@
 import React, { Component } from "react"; //importamos react y component
+// import { uuid } from 'uuidv4'; //importo librería random id generator
+const { uuid } = require('uuidv4');
 
 class NewAppointment extends Component {
   //creamos clase para nueva cita
@@ -7,11 +9,11 @@ class NewAppointment extends Component {
     //creamos state
     appointment: {
       //creamos objeto cita y las propiedades vacías que vamos a usar
-      pet: "",
-      owner: "",
-      date: "",
-      time: "",
-      symptoms: "",
+      pet: "Jackie",
+      owner: "Gabriel",
+      date: "2019-01-01",
+      time: "09:00",
+      symptoms: "Revisión",
     },
     error: false //por defecto sin errores
   };
@@ -43,13 +45,20 @@ class NewAppointment extends Component {
       // detener la ejecución si hay error
       return;
     };
-    
-    console.log('después del if');
+
+    // generar objeto con los datos
+    /** 1. Creamos constante nueva cita
+     *  2. descomponemos el objeto appointment que genera una copia */
+    const newAppointment = { ...this.state.appointment };
+     //agregamos nueva propiedad id generada random con la librería instalada
+    newAppointment.id = uuid();
 
     // Agregar la cita al state de App
+    /** llamamos a la función que está en props
+     * y recoge los datos de la nueva cita generados arriba */
+    this.props.createNewAppointment(newAppointment);
 
   }
-
 
   render() {
     return (

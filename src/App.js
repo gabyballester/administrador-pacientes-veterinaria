@@ -9,6 +9,12 @@ import NewAppointment from "./components/NewAppointment"; //importamos NewAppoin
 class App extends Component {
   //Creamos el state vacío por ahora
   state = {};
+
+    //función que toma datos y lo pasamos así al componente de nueva cita
+    createNewAppointment = info => {
+      console.log(info); //muestro lo que le llega por las props
+    }
+
   render() {
     return (
       //El container de momento vacío
@@ -17,7 +23,10 @@ class App extends Component {
         <Header titulo="Administrador Pacientes Veterinaria" />
         <div className="row">
           <div className="col-md-10 mx-auto">
-            <NewAppointment />
+            <NewAppointment
+            //nombre función igual al nombre del prop
+              createNewAppointment={this.createNewAppointment}
+            />
           </div>
         </div>
       </div>
