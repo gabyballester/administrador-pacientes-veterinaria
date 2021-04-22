@@ -13,9 +13,6 @@ yarn install
 yarn start
 ```
 Url de acceso: [http://localhost:3000](http://localhost:3000)
-####
-#### - API consumida :card_index:
-[https://newsapi.org/](https://newsapi.org/)
 
 #### - Capturas del proyecto :camera:
 ####
